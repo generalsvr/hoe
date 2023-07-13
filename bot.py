@@ -17,6 +17,8 @@ async def start_command(message: types.Message):
 async def conversation_handler(message: types.Message):
     # append message to file like {"text": "message"}
     with open("dialog.jsonl", "a") as f:
+        # replace new line to \n
+        message.text = message.text.replace("\n", "\\n")
         f.write(f'{{"text": "{message.text}"}}\n')
 
         # send message to user with total count of messages
